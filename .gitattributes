@@ -1,1 +1,4 @@
+* text=auto eol=lf
+
+# Preserve third-party license files exactly as distributed.
 assets/fonts/*-LICENSE.txt -text -diff
