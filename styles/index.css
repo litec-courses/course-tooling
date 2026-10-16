@@ -1,0 +1,165 @@
+@font-face {
+  font-family: Inter;
+  src: url('../assets/fonts/inter-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url('../assets/fonts/inter-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  font-size: 100%;
+}
+
+.slidev-layout {
+  background: #f8fafc;
+  color: #24374b;
+  border-top: 0.5rem solid #01315c;
+  padding: 6.5rem 3.25rem 4rem;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: #01315c;
+  font-weight: 700;
+  line-height: 1.18;
+}
+
+.slidev-layout h1 {
+  margin-bottom: 1.75rem;
+  font-size: 2.625rem;
+}
+
+.slidev-layout h2 {
+  margin: 1.25rem 0;
+  font-size: 1.75rem;
+}
+
+.slidev-layout h3 {
+  font-size: 1.5625rem;
+}
+
+.slidev-layout.cover,
+.slidev-layout.section {
+  background: linear-gradient(130deg, #f8fafc 55%, #e6edf4);
+  text-align: center;
+}
+
+.slidev-layout.cover h1,
+.slidev-layout.section h1 {
+  font-size: 4rem;
+}
+
+.slidev-layout li {
+  margin: 0.875rem 0;
+}
+
+.slidev-layout a {
+  color: #01315c;
+  text-decoration: underline;
+}
+
+.slidev-layout blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1.25rem;
+  border-left: 0.3125rem solid #01315c;
+  border-radius: 0.5rem;
+  background: #eef5f7;
+  font-size: 1.4375rem;
+}
+
+.slidev-layout pre,
+.slidev-layout code {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+}
+
+.slidev-layout pre {
+  font-size: 1.125rem !important;
+  line-height: 1.65 !important;
+}
+
+.slidev-layout table {
+  width: 100%;
+  font-size: 1.3125rem;
+}
+
+.slidev-layout th {
+  color: #01315c;
+  background: #e6edf4;
+}
+
+.slidev-layout td,
+.slidev-layout th {
+  padding: 0.875rem 0.75rem;
+}
+
+.slidev-layout.two-columns {
+  column-gap: 2rem;
+}
+
+.slidev-layout.two-columns > div {
+  min-width: 0;
+}
+
+.slidev-layout.exercise {
+  border-top-color: #cc7575;
+}
+
+.slidev-layout.exercise blockquote {
+  border-left-color: #cc7575;
+  background: #f8eaea;
+}
+
+.exercise-label {
+  margin-bottom: 0.75rem;
+  color: #904242;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.litec-brand {
+  position: absolute;
+  top: 1.5rem;
+  right: 3.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  pointer-events: none;
+}
+
+.litec-brand img {
+  display: block;
+  width: auto;
+  height: 2.625rem;
+}
+
+.litec-footer {
+  position: absolute;
+  z-index: 10;
+  right: 3.25rem;
+  bottom: 1rem;
+  left: 3.25rem;
+  display: flex;
+  justify-content: space-between;
+  color: #475569;
+  font-size: 0.875rem;
+}
