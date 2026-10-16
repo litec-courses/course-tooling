@@ -43,7 +43,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.1"
   }
 }
 ```
@@ -68,11 +68,17 @@ permissions:
   id-token: write
 
 jobs:
-  pages:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.1.0
+  ci:
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.1.1
 ```
 
 Pull requests only build the site. Pushes and manual runs on `main` deploy it to GitHub Pages.
+
+## Releases and updates
+
+Each release uses an immutable `vMAJOR.MINOR.PATCH` tag that matches the package version. Patch releases contain compatible fixes, minor releases add compatible features, and major releases may require course changes.
+
+Create and verify a release through a pull request before tagging the merged commit. Course repositories keep the package and reusable-workflow pins on the same tag. Dependabot opens grouped update pull requests; review both pins, require `ci / build`, and squash-merge successful updates. Update major versions deliberately and verify the affected course in a browser before merging.
 
 > [!WARNING]
 > Pages artifacts are public. The publisher excludes speaker notes from HTML builds and only copies handouts listed in `lectures/publish.yml`. Never list exams or solutions.

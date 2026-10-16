@@ -20,7 +20,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.1"
   }
 }
 ```
@@ -81,11 +81,11 @@ A course can also install and select a different Slidev theme. Local overrides s
 
 - [x] Implement the Slidev package.
 - [x] Implement the reusable Pages workflow.
-- [ ] Pin the template to fixed package and workflow versions and verify it with a test course.
+- [x] Pin the template to fixed package and workflow versions and verify it with a test course.
 - [ ] Create reusable exam examples from existing exams.
 - [ ] Apply the infrastructure to existing repositories.
-- [ ] Define a process for major updates.
-- [ ] Define a merge process for Dependabot.
+- [x] Define a process for major updates.
+- [x] Define a merge process for Dependabot.
 
 > [!WARNING]
 > Exams, solutions, and speaker notes must not be published.
