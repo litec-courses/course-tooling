@@ -74,7 +74,7 @@ Under **Require a pull request before merging → Additional settings**, select 
 
 Enable **Require status checks to pass**:
 
-- Add the `build` job name manually under **Add checks**.
+- Add the `ci / build` job name manually under **Add checks**.
 - Initially leave **Require branches to be up to date before merging** disabled.
 - Enable **Do not require status checks on creation**.
 
