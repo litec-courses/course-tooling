@@ -75,11 +75,12 @@ A course can also install and select a different Slidev theme. Local overrides s
 
 - [GitHub organization and rulesets](docs/github-organization.md)
 - [Classroom 50 – New Organization Setup](docs/classroom50-organization-setup.md)
+- [Publishing a course](docs/publishing.md)
 
 ## Roadmap
 
 - [x] Implement the Slidev package.
-- [ ] Implement the reusable Pages workflow.
+- [x] Implement the reusable Pages workflow.
 - [ ] Pin the template to fixed package and workflow versions and verify it with a test course.
 - [ ] Create reusable exam examples from existing exams.
 - [ ] Apply the infrastructure to existing repositories.

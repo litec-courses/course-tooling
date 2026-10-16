@@ -6,6 +6,7 @@
       "name": "slidev-theme-litec",
       "dependencies": {
         "@slidev/theme-default": "0.25.0",
+        "yaml": "2.9.1",
       },
       "devDependencies": {
         "@slidev/cli": "53.0.0",

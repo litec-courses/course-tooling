@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build theme previews
+        run: bun run build
+
+      - name: Check package contents
+        run: bun pm pack --dry-run --ignore-scripts
+
+      - name: Validate workflows
+        run: docker run --rm -v "$PWD:/repo:ro" -w /repo rhysd/actionlint:latest -color
