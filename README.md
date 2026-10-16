@@ -73,6 +73,7 @@ A course can also install and select a different Slidev theme. Local overrides s
 
 ## Documentation
 
+- [Tooling and course architecture](docs/architecture.md)
 - [GitHub organization and rulesets](docs/github-organization.md)
 - [Classroom 50 – New Organization Setup](docs/classroom50-organization-setup.md)
 - [Publishing a course](docs/publishing.md)
@@ -82,7 +83,7 @@ A course can also install and select a different Slidev theme. Local overrides s
 - [x] Implement the Slidev package.
 - [x] Implement the reusable Pages workflow.
 - [x] Pin the template to fixed package and workflow versions and verify it with a test course.
-- [ ] Create reusable exam examples from existing exams.
+- [x] Create reusable exam examples from existing exams.
 - [ ] Apply the infrastructure to existing repositories.
 - [x] Define a process for major updates.
 - [x] Define a merge process for Dependabot.
