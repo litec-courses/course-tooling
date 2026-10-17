@@ -22,14 +22,28 @@ labels:
   units: Units
   footer: Built from files explicitly listed in lectures/publish.yml.
 
-units:
-  - slug: 01-example
-    title: Example unit
-    slides: lectures/01-example-slides.md
-    handout: lectures/01-example-handout.md
+sections:
+  - title: Web Development
+    description: JavaScript, backend, and frontend
+    units:
+      - slug: 01-example
+        title: Example unit
+        slides: lectures/01-web-development/01-example-slides.md
+        handout: lectures/01-web-development/01-example-handout.md
+  - title: Media Production
+    units:
+      - slug: 02-camera
+        title: Camera Basics
+        resources:
+          - title: Camera Settings (PDF)
+            file: lectures/02-media-production/camera-settings.pdf
+          - title: Lenses (PDF)
+            file: lectures/02-media-production/lenses.pdf
 ```
 
-Only listed handouts are copied. Slide builds always use `--without-notes`.
+Sections group related units on the generated course page. A unit can contain Slidev slides, a Markdown handout, resources, or any combination of them. `resources` accepts multiple explicitly listed files, including PDF documents. Legacy configurations with a top-level `units` array remain supported.
+
+Only listed handouts and resources are copied. Slide builds always use `--without-notes`.
 
 ## Course package
 
@@ -43,7 +57,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.1"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.2.0"
   }
 }
 ```
@@ -69,7 +83,7 @@ permissions:
 
 jobs:
   ci:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.1.1
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.2.0
 ```
 
 Pull requests only build the site. Pushes and manual runs on `main` deploy it to GitHub Pages.
