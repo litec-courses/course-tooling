@@ -58,9 +58,6 @@ async function assertCourseFile(relativePath, label) {
 async function loadConfig() {
   const config = YAML.parse(await readFile(configPath, 'utf8'))
   const requiredLabels = [
-    'course',
-    'openCourseSlides',
-    'downloadCourseSlides',
     'openSlides',
     'downloadSlides',
     'downloadHandoutMarkdown',
@@ -68,8 +65,8 @@ async function loadConfig() {
     'footer',
   ]
 
-  if (!config?.course?.title || !config?.course?.slides || !config?.labels)
-    throw new Error('The publish config requires course.title, course.slides, and labels.')
+  if (!config?.course?.title || !config?.labels)
+    throw new Error('The publish config requires course.title and labels.')
   for (const label of requiredLabels) {
     if (!config.labels[label])
       throw new Error(`The publish config requires labels.${label}.`)
@@ -82,7 +79,6 @@ async function loadConfig() {
     ? config.sections
     : [{ title: config.labels.units, units: config.units }]
   const slugs = new Set()
-  await assertCourseFile(config.course.slides, 'course.slides')
   for (const [sectionIndex, section] of sections.entries()) {
     if (!section.title || !Array.isArray(section.units))
       throw new Error(`Section ${sectionIndex + 1} requires title and units.`)
@@ -168,13 +164,6 @@ function renderIndex(config) {
     </div>
   </header>
   <main>
-    <section class="course">
-      <h2>${escapeHtml(labels.course)}</h2>
-      <div class="actions">
-        <a class="button" href="${publicUrl('slides/kurs/')}">${escapeHtml(labels.openCourseSlides)}</a>
-        <a class="button secondary" href="${publicUrl('downloads/kurs-folien.pdf')}" download>${escapeHtml(labels.downloadCourseSlides)}</a>
-      </div>
-    </section>
     <div aria-label="${escapeHtml(labels.units)}">${sections}
     </div>
     <footer>${escapeHtml(labels.footer)}</footer>
@@ -189,7 +178,6 @@ async function main() {
   await rm(dist, { recursive: true, force: true })
   await mkdir(path.join(dist, 'downloads'), { recursive: true })
 
-  await buildDeck(config.course.slides, 'kurs', 'kurs-folien.pdf')
   for (const section of config.sections) {
     for (const unit of section.units) {
       if (unit.slides)

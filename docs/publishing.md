@@ -10,12 +10,8 @@ The course repository controls every public deck and handout:
 course:
   title: Subject · Topic
   description: Slides and handouts
-  slides: lectures/slides.md
 
 labels:
-  course: Complete course
-  openCourseSlides: Open course slides
-  downloadCourseSlides: Download course slides
   openSlides: Open slides
   downloadSlides: Download slides
   downloadHandoutMarkdown: Download handout
@@ -43,6 +39,8 @@ sections:
 
 Sections group related units on the generated course page. A unit can contain Slidev slides, a Markdown handout, resources, or any combination of them. `resources` accepts multiple explicitly listed files, including PDF documents. Legacy configurations with a top-level `units` array remain supported.
 
+The combined local deck, conventionally `lectures/slides.md`, is intentionally not part of the Pages configuration. Publish the individual teaching units and keep the combined deck as a local presentation entry point.
+
 Only listed handouts and resources are copied. Slide builds always use `--without-notes`.
 
 ## Course package
@@ -57,7 +55,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.2.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.5.0"
   }
 }
 ```
@@ -83,14 +81,14 @@ permissions:
 
 jobs:
   ci:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.2.0
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.5.0
 ```
 
-Pull requests only build the site. Pushes and manual runs on `main` deploy it to GitHub Pages.
+Pull requests validate the site without PDF exports. Pushes and manual runs on `main` build the unit PDFs and deploy the complete site to GitHub Pages.
 
 ## Releases and updates
 
-Each release uses an immutable `vMAJOR.MINOR.PATCH` tag that matches the package version. Patch releases contain compatible fixes, minor releases add compatible features, and major releases may require course changes.
+Each release uses an immutable `vMAJOR.MINOR.PATCH` tag that matches the package version. While the package remains below `v1.0.0`, minor releases may contain documented breaking changes and patch releases contain compatible fixes. After `v1.0.0`, breaking changes require a major release.
 
 Create and verify a release through a pull request before tagging the merged commit. Course repositories keep the package and reusable-workflow pins on the same tag. Dependabot opens grouped update pull requests; review both pins, require `ci / build`, and squash-merge successful updates. Update major versions deliberately and verify the affected course in a browser before merging.
 

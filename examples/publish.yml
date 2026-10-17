@@ -1,12 +1,8 @@
 course:
   title: Publisher Example
   description: Grouped units and multiple resources
-  slides: examples/default.md
 
 labels:
-  course: Complete course
-  openCourseSlides: Open course slides
-  downloadCourseSlides: Download course slides
   openSlides: Open slides
   downloadSlides: Download slides
   downloadHandoutMarkdown: Download handout

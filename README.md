@@ -21,7 +21,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.4.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.5.0"
   }
 }
 ```
@@ -71,6 +71,12 @@ themeConfig:
 ```
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
+
+## Changes in v0.5.0
+
+- Removed combined course decks from Pages publishing. Keep `lectures/slides.md` as a local presentation entry point and publish only explicitly configured teaching units.
+- Removed the obsolete combined-course labels, HTML section, PDF export, and page styles.
+- Course configurations no longer use or require `course.slides`; remove the field and the three combined-course labels when upgrading.
 
 ## Changes in v0.4.0
 
