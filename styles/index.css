@@ -107,7 +107,8 @@
 
 .slidev-layout td,
 .slidev-layout th {
-  padding: 0.6rem 0.5rem;
+  padding: 0.35rem 0.5rem;
+  line-height: 1.3;
 }
 
 .slidev-layout.two-columns {

@@ -13,6 +13,7 @@ const dist = resolveCoursePath(process.env.PUBLISH_OUTPUT || 'dist', 'PUBLISH_OU
 const base = normalizeBase(process.env.PAGES_BASE || '/')
 const theme = process.env.SLIDEV_THEME
 const skipPdf = process.argv.includes('--skip-pdf')
+const robotsMeta = '<meta name="robots" content="noindex, nofollow, noarchive">'
 
 function resolveCoursePath(relativePath, label) {
   if (!relativePath || path.isAbsolute(relativePath) || relativePath.split(/[\\/]+/).includes('..'))
@@ -112,8 +113,18 @@ async function buildDeck(source, slug, pdfName) {
   const deckOut = path.join(dist, 'slides', slug)
   const deckBase = publicUrl(`slides/${slug}/`)
   await runSlidev(['build', source, '--out', deckOut, '--base', deckBase, '--without-notes'])
+  await addRobotsMeta(path.join(deckOut, 'index.html'))
   if (!skipPdf)
     await runSlidev(['export', source, '--output', path.join(dist, 'downloads', pdfName), '--with-toc'])
+}
+
+async function addRobotsMeta(filePath) {
+  const html = await readFile(filePath, 'utf8')
+  if (html.includes('name="robots"'))
+    return
+  if (!/<head(?:\s[^>]*)?>/i.test(html))
+    throw new Error(`Cannot add robots metadata to ${filePath}: missing <head>.`)
+  await writeFile(filePath, html.replace(/<head(?:\s[^>]*)?>/i, match => `${match}\n  ${robotsMeta}`))
 }
 
 function renderUnit(unit, labels) {
@@ -150,6 +161,7 @@ function renderIndex(config) {
 <html lang="${escapeHtml(config.language || 'de')}">
 <head>
   <meta charset="utf-8">
+  ${robotsMeta}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(config.course.title)}</title>
   <link rel="icon" type="image/png" href="${publicUrl('assets/litec-icon.png')}">
@@ -202,6 +214,7 @@ async function main() {
   await mkdir(path.join(dist, 'assets'), { recursive: true })
   await cp(path.join(toolRoot, 'assets/litec-icon.png'), path.join(dist, 'assets/litec-icon.png'))
   await writeFile(path.join(dist, 'index.html'), renderIndex(config))
+  await writeFile(path.join(dist, 'robots.txt'), 'User-agent: *\nDisallow: /\n')
   await writeFile(path.join(dist, '.nojekyll'), '')
   console.log(`GitHub Pages output created: ${dist}`)
 }
