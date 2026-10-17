@@ -1,0 +1,32 @@
+course:
+  title: Publisher Example
+  description: Grouped units and multiple resources
+  slides: examples/default.md
+
+labels:
+  course: Complete course
+  openCourseSlides: Open course slides
+  downloadCourseSlides: Download course slides
+  openSlides: Open slides
+  downloadSlides: Download slides
+  downloadHandoutMarkdown: Download handout
+  units: Units
+  footer: Built from explicitly listed files.
+
+sections:
+  - title: Slidev Content
+    units:
+      - slug: example-slides
+        title: Slides and handout
+        slides: examples/widescreen.md
+        handout: docs/publishing.md
+  - title: Existing Resources
+    description: A unit can provide multiple files without a Slidev deck.
+    units:
+      - slug: example-resources
+        title: Brand assets
+        resources:
+          - title: LiTec icon
+            file: assets/litec-icon.png
+          - title: LiTec logo
+            file: assets/litec-logo.png

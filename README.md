@@ -21,7 +21,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.1.1"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.2.0"
   }
 }
 ```

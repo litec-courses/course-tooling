@@ -65,8 +65,16 @@ article {
 }
 
 .course h2,
-article h2 {
+article h3 {
   margin-top: 0;
+}
+
+.topic-section + .topic-section {
+  margin-top: 2.5rem;
+}
+
+.section-description {
+  color: #52606d;
 }
 
 .units {
