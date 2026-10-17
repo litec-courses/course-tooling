@@ -21,7 +21,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.5.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.6.0"
   }
 }
 ```
@@ -71,6 +71,13 @@ themeConfig:
 ```
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
+
+## Changes in v0.6.0
+
+- Added `noindex`, `nofollow`, and `noarchive` metadata to the generated course landing page and every published Slidev deck.
+- Added a supplemental `robots.txt` that requests crawlers not to index the generated Pages output.
+- Reduced vertical table-cell spacing and line height to prevent long tables from bleeding into the slide footer.
+- Search-engine directives do not provide access control; Pages sites and downloads remain public to anyone with the URL.
 
 ## Changes in v0.5.0
 

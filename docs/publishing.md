@@ -55,7 +55,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.5.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.6.0"
   }
 }
 ```
@@ -81,10 +81,16 @@ permissions:
 
 jobs:
   ci:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.5.0
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.6.0
 ```
 
 Pull requests validate the site without PDF exports. Pushes and manual runs on `main` build the unit PDFs and deploy the complete site to GitHub Pages.
+
+## Search-engine indexing
+
+The publisher adds `<meta name="robots" content="noindex, nofollow, noarchive">` to the course landing page and every generated Slidev deck. It also writes a supplemental `robots.txt` with `Disallow: /`.
+
+Project Pages are hosted below a shared origin such as `https://organization.github.io/course/`. Crawlers normally request `robots.txt` only from the origin root, so the HTML metadata is the primary per-course directive. These directives ask compliant search engines not to index the material; they do not restrict access. Anyone with the URL can still open and share the site and its downloads.
 
 ## Releases and updates
 
