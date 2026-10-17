@@ -2,16 +2,17 @@
 
 Shared, versioned tooling and infrastructure for LiTec Slidev courses.
 
-The repository root is the `slidev-theme-litec` Node package. This allows course repositories to install an immutable GitHub tag directly without publishing to npm.
+It provides:
 
-## Planned
-
-- versioned Slidev theme as a Node package
-- reusable GitHub Pages workflow
+- the versioned `slidev-theme-litec` theme and course publisher
+- a reusable GitHub Pages workflow
 - shared infrastructure documentation
-- immutable GitHub tags for use in course repositories
+- immutable GitHub tags for reproducible course builds
 
-Publishing to npm is not currently planned.
+The repository root is the installable Node package, so course repositories can pin a GitHub tag directly. Publishing to npm is not currently planned.
+
+> [!WARNING]
+> Exams, solutions, and speaker notes must not be published.
 
 ## Installation
 
@@ -77,16 +78,3 @@ A course can also install and select a different Slidev theme. Local overrides s
 - [GitHub organization and rulesets](docs/github-organization.md)
 - [Classroom 50 – New Organization Setup](docs/classroom50-organization-setup.md)
 - [Publishing a course](docs/publishing.md)
-
-## Roadmap
-
-- [x] Implement the Slidev package.
-- [x] Implement the reusable Pages workflow.
-- [x] Pin the template to fixed package and workflow versions and verify it with a test course.
-- [x] Create reusable exam examples from existing exams.
-- [ ] Apply the infrastructure to existing repositories.
-- [x] Define a process for major updates.
-- [x] Define a merge process for Dependabot.
-
-> [!WARNING]
-> Exams, solutions, and speaker notes must not be published.
