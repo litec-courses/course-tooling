@@ -12,6 +12,7 @@ const configPath = resolveCoursePath(process.env.PUBLISH_CONFIG || 'lectures/pub
 const dist = resolveCoursePath(process.env.PUBLISH_OUTPUT || 'dist', 'PUBLISH_OUTPUT')
 const base = normalizeBase(process.env.PAGES_BASE || '/')
 const theme = process.env.SLIDEV_THEME
+const skipPdf = process.argv.includes('--skip-pdf')
 
 function resolveCoursePath(relativePath, label) {
   if (!relativePath || path.isAbsolute(relativePath) || relativePath.split(/[\\/]+/).includes('..'))
@@ -115,7 +116,8 @@ async function buildDeck(source, slug, pdfName) {
   const deckOut = path.join(dist, 'slides', slug)
   const deckBase = publicUrl(`slides/${slug}/`)
   await runSlidev(['build', source, '--out', deckOut, '--base', deckBase, '--without-notes'])
-  await runSlidev(['export', source, '--output', path.join(dist, 'downloads', pdfName), '--with-toc'])
+  if (!skipPdf)
+    await runSlidev(['export', source, '--output', path.join(dist, 'downloads', pdfName), '--with-toc'])
 }
 
 function renderUnit(unit, labels) {
