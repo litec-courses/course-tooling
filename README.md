@@ -21,7 +21,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.2.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.3.0"
   }
 }
 ```
@@ -71,6 +71,11 @@ themeConfig:
 ```
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
+
+## Changes in v0.3.0
+
+- Reduced table cell spacing, especially horizontal padding, so wider tables fit the slide canvas more reliably without course-specific overrides.
+- Fixed GitHub Pages initialization from the reusable workflow by granting the build job `contents: read` and `pages: write`. The deployment job continues to use `pages: write` and `id-token: write`.
 
 ## Documentation
 
