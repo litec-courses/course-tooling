@@ -42,9 +42,19 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Install Chromium system dependencies
+        if: github.event_name != 'pull_request'
         run: bunx playwright install --with-deps chromium
 
+      - name: Validate Pages site
+        if: github.event_name == 'pull_request'
+        env:
+          PAGES_BASE: /${{ github.event.repository.name }}/
+          PUBLISH_CONFIG: ${{ inputs.config-path }}
+          PUBLISH_OUTPUT: ${{ inputs.output-directory }}
+        run: bun run pages:build -- --skip-pdf
+
       - name: Build Pages site
+        if: github.event_name != 'pull_request'
         env:
           PAGES_BASE: /${{ github.event.repository.name }}/
           PUBLISH_CONFIG: ${{ inputs.config-path }}

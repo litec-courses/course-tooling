@@ -21,7 +21,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.3.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.4.0"
   }
 }
 ```
@@ -71,6 +71,12 @@ themeConfig:
 ```
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
+
+## Changes in v0.4.0
+
+- Pull requests validate all configured Slidev decks without exporting PDFs or installing Chromium system dependencies.
+- Pushes to `main` continue to build the complete Pages site, including downloadable PDFs.
+- The publisher accepts `--skip-pdf` for fast validation builds.
 
 ## Changes in v0.3.0
 
