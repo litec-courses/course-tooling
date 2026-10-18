@@ -1,0 +1,41 @@
+site:
+  title: LiTec Courses
+  description: Public course materials by year
+  copyright:
+    holders:
+      - Example Teacher
+    year: 2026
+    notice: All rights reserved.
+
+labels:
+  openEntry: Open course
+  emptySection: No published courses yet.
+  footer: Publicly released course materials.
+
+sections:
+  - title: 1st year
+    entries: []
+  - title: 2nd year
+    entries: []
+  - title: 3rd year
+    entries:
+      - title: MEDT3
+        description: Media technology
+        url: https://litec-courses.github.io/MEDT3/
+      - title: SYT3
+        description: Systems engineering
+        url: https://litec-courses.github.io/SYT3/
+  - title: 4th year
+    entries: []
+  - title: 5th year
+    entries: []
+  - title: Infrastructure
+    entries:
+      - title: Course Tooling
+        description: Theme and publishing demo
+        url: https://litec-courses.github.io/course-tooling/
+        linkTitle: Open demo
+      - title: Course Template
+        description: Template for new Slidev course repositories
+        url: https://litec-courses.github.io/tmpl-slidev-course/
+        linkTitle: Open template

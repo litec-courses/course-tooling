@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-function escapeHtml(value) {
+export function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
     .replaceAll('<', '&lt;')
@@ -16,10 +16,45 @@ export function resourceExtension(resource) {
   return resource.directory ? '.zip' : path.extname(resource.file).toLowerCase()
 }
 
+export function renderPage({ base, content, copyright, description, footer, language = 'de', robotsMeta = '', title }) {
+  const publicUrl = relativePath => `${base}${relativePath.replace(/^\/+/, '')}`
+  const copyrightLine = copyright
+    ? `<p class="copyright">© ${copyright.year} ${escapeHtml(copyright.holders.join(', '))}. ${escapeHtml(copyright.notice)}</p>`
+    : ''
+
+  return `<!doctype html>
+<html lang="${escapeHtml(language)}">
+<head>
+  <meta charset="utf-8">
+  ${robotsMeta}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(title)}</title>
+  <link rel="icon" type="image/png" href="${publicUrl('assets/litec-icon.png')}">
+  <link rel="stylesheet" href="${publicUrl('styles.css')}">
+</head>
+<body>
+  <header>
+    <img src="${publicUrl('assets/litec-icon.png')}" alt="LiTec">
+    <div>
+      <h1>${escapeHtml(title)}</h1>
+      <p>${escapeHtml(description || '')}</p>
+    </div>
+  </header>
+  <main>${content}
+  </main>
+  <footer>
+    <div class="footer-content">
+      <p>${escapeHtml(footer)}</p>
+      ${copyrightLine}
+    </div>
+  </footer>
+</body>
+</html>`
+}
+
 export function renderIndex(config, base, robotsMeta) {
   const publicUrl = relativePath => `${base}${relativePath.replace(/^\/+/, '')}`
   const labels = config.labels
-  const copyright = config.course.copyright
 
   function renderUnit(unit) {
     const actions = []
@@ -49,38 +84,16 @@ export function renderIndex(config, base, robotsMeta) {
       </div>
     </section>`).join('')
 
-  const copyrightLine = copyright
-    ? `<p class="copyright">© ${copyright.year} ${escapeHtml(copyright.holders.join(', '))}. ${escapeHtml(copyright.notice)}</p>`
-    : ''
-
-  return `<!doctype html>
-<html lang="${escapeHtml(config.language || 'de')}">
-<head>
-  <meta charset="utf-8">
-  ${robotsMeta}
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escapeHtml(config.course.title)}</title>
-  <link rel="icon" type="image/png" href="${publicUrl('assets/litec-icon.png')}">
-  <link rel="stylesheet" href="${publicUrl('styles.css')}">
-</head>
-<body>
-  <header>
-    <img src="${publicUrl('assets/litec-icon.png')}" alt="LiTec">
-    <div>
-      <h1>${escapeHtml(config.course.title)}</h1>
-      <p>${escapeHtml(config.course.description || '')}</p>
-    </div>
-  </header>
-  <main>
+  return renderPage({
+    base,
+    content: `
     <div aria-label="${escapeHtml(labels.units)}">${sections}
-    </div>
-  </main>
-  <footer>
-    <div class="footer-content">
-      <p>${escapeHtml(labels.footer)}</p>
-      ${copyrightLine}
-    </div>
-  </footer>
-</body>
-</html>`
+    </div>`,
+    copyright: config.course.copyright,
+    description: config.course.description,
+    footer: labels.footer,
+    language: config.language,
+    robotsMeta,
+    title: config.course.title,
+  })
 }

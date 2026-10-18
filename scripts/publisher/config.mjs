@@ -2,6 +2,18 @@ import { lstat, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import YAML from 'yaml'
 
+export function validateCopyright(copyright, label) {
+  if (copyright === undefined)
+    return
+  if (!copyright || !Array.isArray(copyright.holders) || copyright.holders.length === 0
+    || copyright.holders.some(holder => typeof holder !== 'string' || !holder.trim()))
+    throw new Error(`${label}.holders must be a non-empty array of names.`)
+  if (!Number.isInteger(copyright.year) || copyright.year < 1000 || copyright.year > 9999)
+    throw new Error(`${label}.year must be a four-digit integer.`)
+  if (typeof copyright.notice !== 'string' || !copyright.notice.trim())
+    throw new Error(`${label}.notice must be a non-empty string.`)
+}
+
 export function createCoursePaths(courseRoot) {
   function resolve(relativePath, label) {
     if (!relativePath || path.isAbsolute(relativePath) || relativePath.split(/[\\/]+/).includes('..'))
@@ -32,16 +44,7 @@ export async function loadPublishConfig(configPath, paths) {
 
   if (!config?.course?.title || !config?.labels)
     throw new Error('The publish config requires course.title and labels.')
-  if (config.course.copyright !== undefined) {
-    const copyright = config.course.copyright
-    if (!copyright || !Array.isArray(copyright.holders) || copyright.holders.length === 0
-      || copyright.holders.some(holder => typeof holder !== 'string' || !holder.trim()))
-      throw new Error('course.copyright.holders must be a non-empty array of names.')
-    if (!Number.isInteger(copyright.year) || copyright.year < 1000 || copyright.year > 9999)
-      throw new Error('course.copyright.year must be a four-digit integer.')
-    if (typeof copyright.notice !== 'string' || !copyright.notice.trim())
-      throw new Error('course.copyright.notice must be a non-empty string.')
-  }
+  validateCopyright(config.course.copyright, 'course.copyright')
   for (const label of requiredLabels) {
     if (!config.labels[label])
       throw new Error(`The publish config requires labels.${label}.`)
