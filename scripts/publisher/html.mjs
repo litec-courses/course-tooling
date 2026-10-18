@@ -59,7 +59,7 @@ export function renderIndex(config, base, robotsMeta) {
   function renderUnit(unit) {
     const actions = []
     if (unit.slides) {
-      actions.push(`<a class="button" href="${publicUrl(`slides/${unit.slug}/`)}">${escapeHtml(labels.openSlides)}</a>`)
+      actions.push(`<a class="button" href="${publicUrl(`slides/${unit.slug}/`)}" target="_blank" rel="noopener noreferrer">${escapeHtml(labels.openSlides)}</a>`)
       actions.push(`<a class="button secondary" href="${publicUrl(`downloads/${unit.slug}-folien.pdf`)}" download>${escapeHtml(labels.downloadSlides)}</a>`)
     }
     if (unit.handout)

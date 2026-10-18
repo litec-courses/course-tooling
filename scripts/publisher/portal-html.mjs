@@ -7,7 +7,7 @@ export function renderPortal(config, base, robotsMeta) {
         <article>
           <h3>${escapeHtml(entry.title)}</h3>
           ${entry.description ? `<p class="section-description">${escapeHtml(entry.description)}</p>` : ''}
-          <div class="actions"><a class="button" href="${escapeHtml(entry.url)}">${escapeHtml(entry.linkTitle || config.labels.openEntry)}</a></div>
+          <div class="actions"><a class="button" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(entry.linkTitle || config.labels.openEntry)}</a></div>
         </article>`).join('')}
       </div>`
       : `<p class="empty-section">${escapeHtml(config.labels.emptySection)}</p>`
