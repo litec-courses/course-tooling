@@ -32,6 +32,16 @@ export async function loadPublishConfig(configPath, paths) {
 
   if (!config?.course?.title || !config?.labels)
     throw new Error('The publish config requires course.title and labels.')
+  if (config.course.copyright !== undefined) {
+    const copyright = config.course.copyright
+    if (!copyright || !Array.isArray(copyright.holders) || copyright.holders.length === 0
+      || copyright.holders.some(holder => typeof holder !== 'string' || !holder.trim()))
+      throw new Error('course.copyright.holders must be a non-empty array of names.')
+    if (!Number.isInteger(copyright.year) || copyright.year < 1000 || copyright.year > 9999)
+      throw new Error('course.copyright.year must be a four-digit integer.')
+    if (typeof copyright.notice !== 'string' || !copyright.notice.trim())
+      throw new Error('course.copyright.notice must be a non-empty string.')
+  }
   for (const label of requiredLabels) {
     if (!config.labels[label])
       throw new Error(`The publish config requires labels.${label}.`)

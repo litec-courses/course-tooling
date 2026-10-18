@@ -10,6 +10,11 @@ The course repository controls every public deck and handout:
 course:
   title: Subject · Topic
   description: Slides and handouts
+  copyright:
+    holders:
+      - Firstname Lastname
+    year: 2026
+    notice: All rights reserved.
 
 labels:
   openSlides: Open slides
@@ -44,6 +49,11 @@ sections:
 
 Sections group related units on the generated course page. A unit can contain Slidev slides, a Markdown handout, resources, or any combination of them. Each resource uses either `file` for a single file or `directory` for a ZIP archive generated during publishing. Legacy configurations with a top-level `units` array remain supported.
 
+The optional `course.copyright` block identifies the teachers who hold the rights to the course material. `holders` accepts one or more names. The generated notice appears in a real page footer that stays at the bottom of short pages and follows the content on longer pages. Keep the school or publishing context separate from the names of the rights holders.
+
+> [!WARNING]
+> Copyrighted third-party material used within slides or handouts must carry an appropriate copyright notice that identifies its rights holder and source. Record the applicable license or permission as well; a copyright notice alone does not grant permission to publish the material. Do not apply the course-wide notice or license to third-party content unless its terms explicitly allow that.
+
 Directory archives contain only regular files tracked by Git. The selected directory becomes the archive's top-level folder. This includes tracked dotfiles such as `.env.example` and `.gitignore`, but excludes local `.env` files, logs, runtime data, and every other untracked file. Symlinks are rejected. Review every tracked file in a published directory because Pages downloads are public.
 
 The combined local deck, conventionally `lectures/slides.md`, is intentionally not part of the Pages configuration. Publish the individual teaching units and keep the combined deck as a local presentation entry point.
@@ -62,7 +72,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.6.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.8.0"
   }
 }
 ```
@@ -88,7 +98,7 @@ permissions:
 
 jobs:
   ci:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.6.0
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.8.0
 ```
 
 Pull requests validate the site without PDF exports. Pushes and manual runs on `main` build the unit PDFs and deploy the complete site to GitHub Pages.
