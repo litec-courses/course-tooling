@@ -1,6 +1,11 @@
 course:
   title: Publisher Example
   description: Grouped units and multiple resources
+  copyright:
+    holders:
+      - Example Teacher
+    year: 2026
+    notice: All rights reserved.
 
 labels:
   openSlides: Open slides

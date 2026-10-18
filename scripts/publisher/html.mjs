@@ -19,6 +19,7 @@ export function resourceExtension(resource) {
 export function renderIndex(config, base, robotsMeta) {
   const publicUrl = relativePath => `${base}${relativePath.replace(/^\/+/, '')}`
   const labels = config.labels
+  const copyright = config.course.copyright
 
   function renderUnit(unit) {
     const actions = []
@@ -48,6 +49,10 @@ export function renderIndex(config, base, robotsMeta) {
       </div>
     </section>`).join('')
 
+  const copyrightLine = copyright
+    ? `<p class="copyright">© ${copyright.year} ${escapeHtml(copyright.holders.join(', '))}. ${escapeHtml(copyright.notice)}</p>`
+    : ''
+
   return `<!doctype html>
 <html lang="${escapeHtml(config.language || 'de')}">
 <head>
@@ -69,8 +74,13 @@ export function renderIndex(config, base, robotsMeta) {
   <main>
     <div aria-label="${escapeHtml(labels.units)}">${sections}
     </div>
-    <footer>${escapeHtml(labels.footer)}</footer>
   </main>
+  <footer>
+    <div class="footer-content">
+      <p>${escapeHtml(labels.footer)}</p>
+      ${copyrightLine}
+    </div>
+  </footer>
 </body>
 </html>`
 }
