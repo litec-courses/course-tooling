@@ -23,7 +23,7 @@ Course repositories pin an immutable GitHub tag:
 ```json
 {
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.8.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.9.0"
   }
 }
 ```
@@ -74,6 +74,12 @@ themeConfig:
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
 
+## Changes in v0.9.0
+
+- Added a portal publisher for organization-level course indexes with grouped external HTTPS links.
+- Added an explicit Pages base-path override for root organization sites.
+- Added an option to skip Chromium installation for Pages sites without PDF exports.
+
 ## Changes in v0.8.0
 
 - Added optional teacher copyright metadata to the course publishing configuration.
@@ -116,3 +122,4 @@ A course can also install and select a different Slidev theme. Local overrides s
 - [GitHub organization and rulesets](docs/github-organization.md)
 - [Classroom 50 – New Organization Setup](docs/classroom50-organization-setup.md)
 - [Publishing a course](docs/publishing.md)
+- [Publishing a course portal](docs/portal.md)

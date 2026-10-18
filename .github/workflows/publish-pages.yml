@@ -15,6 +15,14 @@ on:
         description: Pages output directory relative to the course repository
         type: string
         default: dist
+      base-path:
+        description: Public URL base path; defaults to the repository name
+        type: string
+        default: ''
+      install-chromium:
+        description: Install Chromium system dependencies for PDF exports
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -42,13 +50,13 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Install Chromium system dependencies
-        if: github.event_name != 'pull_request'
+        if: inputs.install-chromium && github.event_name != 'pull_request'
         run: bunx playwright install --with-deps chromium
 
       - name: Validate Pages site
         if: github.event_name == 'pull_request'
         env:
-          PAGES_BASE: /${{ github.event.repository.name }}/
+          PAGES_BASE: ${{ inputs.base-path || format('/{0}/', github.event.repository.name) }}
           PUBLISH_CONFIG: ${{ inputs.config-path }}
           PUBLISH_OUTPUT: ${{ inputs.output-directory }}
         run: bun run pages:build -- --skip-pdf
@@ -56,7 +64,7 @@ jobs:
       - name: Build Pages site
         if: github.event_name != 'pull_request'
         env:
-          PAGES_BASE: /${{ github.event.repository.name }}/
+          PAGES_BASE: ${{ inputs.base-path || format('/{0}/', github.event.repository.name) }}
           PUBLISH_CONFIG: ${{ inputs.config-path }}
           PUBLISH_OUTPUT: ${{ inputs.output-directory }}
         run: bun run pages:build

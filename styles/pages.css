@@ -74,6 +74,14 @@ article h3 {
   color: #52606d;
 }
 
+.empty-section {
+  padding: 1.5rem;
+  border: 1px dashed #b8c7d4;
+  border-radius: 0.75rem;
+  color: #52606d;
+  background: rgb(255 255 255 / 55%);
+}
+
 .units {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));

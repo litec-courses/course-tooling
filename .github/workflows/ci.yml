@@ -31,6 +31,14 @@ jobs:
       - name: Test course publisher
         run: bun run test:publish:skip-pdf
 
+      - name: Test portal publisher
+        run: bun run test:portal
+
+      - name: Validate portal search directives
+        run: |
+          grep -F 'noindex, nofollow, noarchive' dist/portal-test/index.html
+          grep -F 'Disallow: /' dist/portal-test/robots.txt
+
       - name: Validate generated starter archive
         run: unzip -t dist/publisher-test/downloads/example-starter-resource-1.zip
 
