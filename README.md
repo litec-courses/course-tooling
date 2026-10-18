@@ -72,6 +72,12 @@ themeConfig:
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
 
+## Changes in v0.7.0
+
+- Added directory resources that become ZIP downloads containing only Git-tracked regular files.
+- Reduced table-cell spacing further for content-heavy teaching slides.
+- Replaced the red Pages button hover color with lighter and darker blue variants.
+
 ## Changes in v0.6.0
 
 - Added `noindex`, `nofollow`, and `noarchive` metadata to the generated course landing page and every published Slidev deck.

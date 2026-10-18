@@ -28,6 +28,12 @@ jobs:
       - name: Build theme previews
         run: bun run build
 
+      - name: Test course publisher
+        run: bun run test:publish:skip-pdf
+
+      - name: Validate generated starter archive
+        run: unzip -t dist/publisher-test/downloads/example-starter-resource-1.zip
+
       - name: Check package contents
         run: bun pm pack --dry-run --ignore-scripts
 

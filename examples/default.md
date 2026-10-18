@@ -30,6 +30,18 @@ const courseFormat = '3/2'
 ```
 
 ---
+
+# Compact tables
+
+| Setting | Purpose | Example |
+| --- | --- | --- |
+| `image` | Select an image | `nginx:alpine` |
+| `build` | Build an image | `.` |
+| `ports` | Publish a port | `8080:80` |
+| `environment` | Set runtime configuration | `LOG_LEVEL=info` |
+| `volumes` | Persist or mount data | `app_data:/data` |
+
+---
 layout: exercise
 ---
 
