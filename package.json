@@ -29,6 +29,7 @@
     "dev": "slidev examples/default.md",
     "build": "slidev build examples/default.md --out ../dist/default && slidev build examples/widescreen.md --out ../dist/widescreen",
     "export": "slidev export examples/default.md --output dist/example.pdf && slidev export examples/widescreen.md --output dist/example-widescreen.pdf",
+    "pages:build": "node scripts/publish.mjs",
     "test:publish": "PUBLISH_CONFIG=examples/publish.yml PUBLISH_OUTPUT=dist/publisher-test node scripts/publish.mjs",
     "test:publish:skip-pdf": "PUBLISH_CONFIG=examples/publish.yml PUBLISH_OUTPUT=dist/publisher-test node scripts/publish.mjs --skip-pdf"
   },

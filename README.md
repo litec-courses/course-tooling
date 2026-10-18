@@ -11,6 +11,8 @@ It provides:
 
 The repository root is the installable Node package, so course repositories can pin a GitHub tag directly. Publishing to npm is not currently planned.
 
+The [live publisher demo](https://litec-courses.github.io/course-tooling/) shows the current `main` branch using the example publish configuration.
+
 > [!WARNING]
 > Exams, solutions, and speaker notes must not be published.
 
