@@ -1,0 +1,20 @@
+name: Course Tooling Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  pages:
+    uses: ./.github/workflows/publish-pages.yml
+    with:
+      config-path: examples/publish.yml
+      output-directory: dist/pages
