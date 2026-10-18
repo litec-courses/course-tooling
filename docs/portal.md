@@ -52,7 +52,7 @@ Expose the portal publisher as the Pages build command:
     "pages:build": "litec-course-portal"
   },
   "devDependencies": {
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.9.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.9.1"
   }
 }
 ```
@@ -62,7 +62,7 @@ An organization site uses `/` instead of a repository-name base path and does no
 ```yaml
 jobs:
   pages:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.9.0
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.9.1
     with:
       config-path: portal.yml
       base-path: /

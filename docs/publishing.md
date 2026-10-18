@@ -72,7 +72,7 @@ Pin `course-tooling` to an immutable tag and expose the publisher command:
   "devDependencies": {
     "@slidev/cli": "53.0.0",
     "playwright-chromium": "1.64.1",
-    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.9.0"
+    "slidev-theme-litec": "github:litec-courses/course-tooling#v0.9.1"
   }
 }
 ```
@@ -98,7 +98,7 @@ permissions:
 
 jobs:
   ci:
-    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.9.0
+    uses: litec-courses/course-tooling/.github/workflows/publish-pages.yml@v0.9.1
 ```
 
 Pull requests validate the site without PDF exports. Pushes and manual runs on `main` build the unit PDFs and deploy the complete site to GitHub Pages.
