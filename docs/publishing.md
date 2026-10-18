@@ -35,13 +35,20 @@ sections:
             file: lectures/02-media-production/camera-settings.pdf
           - title: Lenses (PDF)
             file: lectures/02-media-production/lenses.pdf
+      - slug: compose-lab
+        title: Compose lab
+        resources:
+          - title: Starter project (ZIP)
+            directory: examples/01-docker/compose-lab
 ```
 
-Sections group related units on the generated course page. A unit can contain Slidev slides, a Markdown handout, resources, or any combination of them. `resources` accepts multiple explicitly listed files, including PDF documents. Legacy configurations with a top-level `units` array remain supported.
+Sections group related units on the generated course page. A unit can contain Slidev slides, a Markdown handout, resources, or any combination of them. Each resource uses either `file` for a single file or `directory` for a ZIP archive generated during publishing. Legacy configurations with a top-level `units` array remain supported.
+
+Directory archives contain only regular files tracked by Git. The selected directory becomes the archive's top-level folder. This includes tracked dotfiles such as `.env.example` and `.gitignore`, but excludes local `.env` files, logs, runtime data, and every other untracked file. Symlinks are rejected. Review every tracked file in a published directory because Pages downloads are public.
 
 The combined local deck, conventionally `lectures/slides.md`, is intentionally not part of the Pages configuration. Publish the individual teaching units and keep the combined deck as a local presentation entry point.
 
-Only listed handouts and resources are copied. Slide builds always use `--without-notes`.
+Only listed handouts and resources are copied or archived. Slide builds always use `--without-notes`.
 
 ## Course package
 

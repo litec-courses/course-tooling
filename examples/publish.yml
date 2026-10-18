@@ -26,3 +26,8 @@ sections:
             file: assets/litec-icon.png
           - title: LiTec logo
             file: assets/litec-logo.png
+      - slug: example-starter
+        title: Starter project
+        resources:
+          - title: Starter project (ZIP)
+            directory: examples/starter-project

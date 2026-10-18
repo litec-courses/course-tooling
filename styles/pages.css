@@ -102,8 +102,13 @@ a.button.secondary {
 }
 
 a.button:hover {
-  color: #17212b;
-  background: #cc7575;
+  color: white;
+  background: #0b4f7a;
+}
+
+a.button.secondary:hover {
+  color: #01315c;
+  background: #cfdeea;
 }
 
 footer {
