@@ -74,6 +74,12 @@ themeConfig:
 
 A course can also install and select a different Slidev theme. Local overrides stay in the course repository and do not require a fork of `course-tooling`.
 
+## Changes in v0.9.2
+
+- Preserve source filenames for handout and worksheet downloads, without suffix restrictions or aliases. Rebuild the complete course site after upgrading; previous `<slug>-begleitblatt.md` URLs are replaced by the source filenames.
+- Add a German teacher checklist covering template setup, slides, worksheets, ZIP resources, Bun commands, and deployment directly from `main`.
+- Document unprotected course repositories with optional branches and pull requests; shared infrastructure can retain stricter protection.
+
 ## Changes in v0.9.1
 
 - Open portal entries and course slide decks in a new browser tab while keeping their overview pages available.
@@ -122,6 +128,7 @@ A course can also install and select a different Slidev theme. Local overrides s
 
 ## Documentation
 
+- [Teacher checklist: template to deployed course](docs/teacher-checklist.md)
 - [Tooling and course architecture](docs/architecture.md)
 - [GitHub organization and rulesets](docs/github-organization.md)
 - [Classroom 50 – New Organization Setup](docs/classroom50-organization-setup.md)

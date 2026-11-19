@@ -41,7 +41,8 @@ Repositories without an explicit value inherit the default. This allows Classroo
 
 | Usage | Target profile |
 | --- | --- |
-| `litec-courses` | `pull_request` as the eventual default |
+| teacher-maintained course repositories | `off`; direct pushes to `main` |
+| `litec-courses` | `off` as the default; protect infrastructure explicitly |
 | Classroom 50 organization | `off` as the default |
 | pull-request exercise | `pull_request` |
 | jointly maintained infrastructure | `review_required` |
@@ -105,7 +106,7 @@ Assign `pull_request` and then `review_required` to a test repository.
 - `off`: organization rulesets must not appear under `/<organization>/<repository>/rules`.
 - Classroom 50: a newly created repository must inherit `off`.
 
-Then assign the real repositories. For `litec-courses`, `pull_request` can now become the default. Verify all profiles again. Changes apply immediately.
+Then assign the real repositories. Keep `off` as the default for teacher-maintained courses so teachers can push directly to `main`; assign `pull_request` or `review_required` explicitly to shared infrastructure. Verify all profiles again. Changes apply immediately.
 
 ## Change a profile
 

@@ -1,6 +1,6 @@
 {
   "name": "slidev-theme-litec",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "description": "Shared Slidev theme for LiTec courses",
   "type": "module",

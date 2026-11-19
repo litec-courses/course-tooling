@@ -12,6 +12,10 @@ export function normalizeBase(value) {
   return `/${value.split('/').filter(Boolean).join('/')}${value === '/' ? '' : '/'}`
 }
 
+export function handoutFilename(unit) {
+  return path.basename(unit.handout)
+}
+
 export function resourceExtension(resource) {
   return resource.directory ? '.zip' : path.extname(resource.file).toLowerCase()
 }
@@ -63,7 +67,7 @@ export function renderIndex(config, base, robotsMeta) {
       actions.push(`<a class="button secondary" href="${publicUrl(`downloads/${unit.slug}-folien.pdf`)}" download>${escapeHtml(labels.downloadSlides)}</a>`)
     }
     if (unit.handout)
-      actions.push(`<a class="button secondary" href="${publicUrl(`downloads/${unit.slug}-begleitblatt.md`)}" download>${escapeHtml(labels.downloadHandoutMarkdown)}</a>`)
+      actions.push(`<a class="button secondary" href="${publicUrl(`downloads/${encodeURIComponent(handoutFilename(unit))}`)}" download>${escapeHtml(labels.downloadHandoutMarkdown)}</a>`)
     for (const [resourceIndex, resource] of (unit.resources || []).entries()) {
       const extension = resourceExtension(resource)
       actions.push(`<a class="button secondary" href="${publicUrl(`downloads/${unit.slug}-resource-${resourceIndex + 1}${extension}`)}">${escapeHtml(resource.title)}</a>`)
