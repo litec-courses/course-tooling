@@ -1,6 +1,6 @@
 # Publishing a Course
 
-The reusable workflow builds and deploys the files explicitly listed in `lectures/publish.yml`.
+The reusable workflow builds and deploys the files explicitly listed in `lectures/publish.yml`. For the direct-to-`main` teacher workflow, start with the [teacher checklist](teacher-checklist.md).
 
 ## Publish configuration
 
@@ -57,6 +57,10 @@ The optional `course.copyright` block identifies the teachers who hold the right
 Directory archives contain only regular files tracked by Git. The selected directory becomes the archive's top-level folder. This includes tracked dotfiles such as `.env.example` and `.gitignore`, but excludes local `.env` files, logs, runtime data, and every other untracked file. Symlinks are rejected. Review every tracked file in a published directory because Pages downloads are public.
 
 The combined local deck, conventionally `lectures/slides.md`, is intentionally not part of the Pages configuration. Publish the individual teaching units and keep the combined deck as a local presentation entry point.
+
+The `handout` configuration key accepts any source filename. The publisher copies it to `downloads/<source-filename>` and links to that filename, without suffix restrictions or aliases. The configuration keys stay unchanged; set `labels.downloadHandoutMarkdown` to the desired visible label.
+
+Starting with v0.9.2, this replaces the generated `<slug>-begleitblatt.md` download names. Rebuild the complete site when upgrading; old download URLs are not retained. Use unique source filenames across published handouts.
 
 Only listed handouts and resources are copied or archived. Slide builds always use `--without-notes`.
 

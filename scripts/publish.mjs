@@ -6,7 +6,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { archiveDirectory } from './publisher/archive.mjs'
 import { createCoursePaths, loadPublishConfig } from './publisher/config.mjs'
-import { normalizeBase, renderIndex, resourceExtension } from './publisher/html.mjs'
+import { handoutFilename, normalizeBase, renderIndex, resourceExtension } from './publisher/html.mjs'
 
 const toolRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const courseRoot = path.resolve(process.env.COURSE_ROOT || process.cwd())
@@ -85,10 +85,9 @@ async function main() {
       if (unit.slides)
         await buildDeck(unit.slides, unit.slug)
       if (unit.handout) {
-        await cp(
-          paths.resolve(unit.handout, `${unit.slug}.handout`),
-          path.join(dist, 'downloads', `${unit.slug}-begleitblatt.md`),
-        )
+        const source = paths.resolve(unit.handout, `${unit.slug}.handout`)
+        const filename = handoutFilename(unit)
+        await cp(source, path.join(dist, 'downloads', filename))
       }
       for (const [resourceIndex, resource] of (unit.resources || []).entries())
         await publishResource(unit, resource, resourceIndex)
